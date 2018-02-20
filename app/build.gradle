@@ -24,12 +24,12 @@ def releaseKey = file('release.jks')
 def debugKey = file('debug.jks')
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.drakeet.rebase"
         minSdkVersion 18 /* 4.3+ */
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 106
         versionName "0.9.16"
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "GooglePlay"]
@@ -66,43 +66,16 @@ android {
             shrinkResources true
             signingConfig signingConfigs.release
             proguardFiles 'proguard-common.pro', 'proguard-rules.pro'
-
-            applicationVariants.all { variant ->
-                variant.outputs.each { output ->
-                    def outputFile = output.outputFile
-                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                        def fileName = "Rebase_v${defaultConfig.versionName}_${variant.productFlavors[0].name}.apk"
-                        output.outputFile = new File(outputFile.parent, fileName)
-                    }
-                }
-            }
         }
+    }
 
-        productFlavors {
-            Xiaomi {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Xiaomi"]
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def apkName = 'Rebase' + '-' + variant.versionName
+            if (!variant.flavorName.isEmpty()) {
+                apkName += ('-' + variant.flavorName)
             }
-            Baidu {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Baidu"]
-            }
-            Wandoujia {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Wandoujia"]
-            }
-            fir {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "fir"]
-            }
-            GooglePlay {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "GooglePlay"]
-            }
-            Smartisan {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "Smartisan"]
-            }
-            KuAn {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "KuAn"]
-            }
-            QQ {
-                manifestPlaceholders = [UMENG_CHANNEL_VALUE: "QQ"]
-            }
+            outputFileName = apkName + '.apk'
         }
     }
 
@@ -121,11 +94,11 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
 
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:support-annotations:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'me.drakeet.multitype:multitype:3.0.0'
+    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.android.support:support-annotations:27.0.2'
+    compile 'com.android.support:recyclerview-v7:27.0.2'
+    compile 'com.android.support:design:27.0.2'
+    compile 'me.drakeet.multitype:multitype:3.4.4'
     compile 'me.drakeet.support:about:1.2.0'
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'

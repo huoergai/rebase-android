@@ -63,7 +63,7 @@ public class RebaseRetrofit {
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
             .connectionSpecs(Collections.singletonList(ConnectionSpec.MODERN_TLS))
             .certificatePinner(new CertificatePinner.Builder()
-                .add("api.drakeet.com", "sha256/9aQHJArF0zbDubXlykRKFeuSxbezVPkqiT7Cgg/HX6s=")
+                .add("api.drakeet.com", "sha256//B4Dm7LToUaHbpLDw3LC7hDKrybwZ8aBTruBPZPLxfU=")
                 .build());
 
         clientBuilder.addInterceptor(new Interceptor() {
