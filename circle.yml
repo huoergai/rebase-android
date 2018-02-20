@@ -21,8 +21,8 @@ dependencies:
         - if [[ ! -e ~/android-ndk-r14-beta1 ]]; then wget http://dl.google.com/android/repository/android-ndk-r14-beta1-linux-x86_64.zip && unzip -d ~ android-ndk-r14-beta1-linux-x86_64.zip; fi
         - ls $HOME
         - echo y | android update sdk --no-ui --all --filter tools,platform-tools,android-25
-        - echo y | android update sdk --no-ui --all --filter build-tools-25.0.2
-        - echo y | android update sdk --no-ui --all --filter android-25
+        - echo y | android update sdk --no-ui --all --filter build-tools-27.0.3
+        - echo y | android update sdk --no-ui --all --filter android-27
         - echo y | android update sdk --no-ui --all --filter tools
         - echo y | android update sdk --no-ui --all --filter extra-android-m2repository
         - echo y | android update sdk --no-ui --all --filter extra-android-support
